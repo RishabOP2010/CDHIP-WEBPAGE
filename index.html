@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CDH INTERNET POINT</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #000;
+            color: #fff;
+        }
+        header {
+            text-align: center;
+            padding: 1rem 0;
+            background-color: #111;
+        }
+        nav {
+            text-align: center;
+            padding: 0.5rem 0;
+            background-color: #222;
+        }
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            margin: 0 1rem;
+            font-size: 1.1rem;
+        }
+        .container {
+            padding: 2rem;
+            max-width: 1200px;
+            margin: auto;
+        }
+        .product {
+            background-color: #111;
+            margin-bottom: 1.5rem;
+            padding: 1rem;
+            border-radius: 5px;
+        }
+        .product-title {
+            font-size: 1.25rem;
+            font-weight: bold;
+        }
+        .product-actions {
+            margin-top: 1rem;
+        }
+        .product-actions select, .product-actions input {
+            margin-right: 0.5rem;
+            padding: 0.5rem;
+            background-color: #222;
+            color: #fff;
+            border: 1px solid #444;
+        }
+        .product-actions button {
+            padding: 0.5rem 1rem;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+        }
+        .cart-display {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #222;
+            color: #fff;
+            padding: 1rem;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+            width: 300px;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+        .cart-display h4 {
+            margin-top: 0;
+        }
+        .cart-qr img {
+            max-width: 100%;
+            margin-top: 1rem;
+        }
+        .checkout-button {
+            background-color: #007bff;
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+        }
+        .popup {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            background-color: #007bff;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-weight: bold;
+            display: none;
+            z-index: 1000;
+        }
+        /* Scrolling text at the bottom */
+        .scrolling-bottom-text {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            background-color: #222;
+            color: #fff;
+            text-align: center;
+            white-space: nowrap;
+            overflow: hidden;
+        }
+        .scrolling-bottom-text span {
+            display: inline-block;
+            padding-left: 100%;
+            animation: scrollBottomText 10s linear infinite;
+        }
+        @keyframes scrollBottomText {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-100%); }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>CDH INTERNET POINT</h1>
+        <p>The No. One Online E-Commerce and Servicing Site of Chakdah and Simurali</p>
+    </header>
+    <nav>
+        <a href="file:///C:/Users/risha/OneDrive/Desktop/CDH%20OFFS%20WEBPAGE/index.html">Online Shopping</a>
+        <a href="file:///C:/Users/risha/OneDrive/Desktop/CDH%20OFFS%20WEBPAGE/contact.html">Contact Us</a>
+        <a href="file:///C:/Users/risha/OneDrive/Desktop/CDH%20OFFS%20WEBPAGE/offline.html">Offline Shopping Book</a>
+    </nav>
+    <div class="container">
+        <!-- Redeem Code -->
+        <div class="product">
+            <div class="product-title">Redeem Code</div>
+            <div class="product-actions">
+                <input type="number" id="redeem-amount" placeholder="Enter amount">
+                <button onclick="addToCart('Redeem Code', parseFloat(document.getElementById('redeem-amount').value) || 0)">Add to Cart</button>
+            </div>
+        </div>
+
+        <!-- Mobile and Fiber Recharge -->
+        <div class="product">
+            <div class="product-title">Mobile and Fiber Recharge</div>
+            <div class="product-actions">
+                <select id="recharge-company">
+                    <option value="jio">Jio</option>
+                    <option value="airtel">Airtel</option>
+                    <option value="bsnl">BSNL</option>
+                    <option value="vi">VI</option>
+                </select>
+                <select id="recharge-plan">
+                    <option value="199">Mobile Plan ₹199</option>
+                    <option value="399">Mobile Plan ₹399</option>
+                    <option value="599">Mobile Plan ₹599</option>
+                    <option value="699">Fiber Plan ₹699</option>
+                    <option value="999">Fiber Plan ₹999</option>
+                </select>
+                <button onclick="addToCart('Recharge', parseFloat(document.getElementById('recharge-plan').value), document.getElementById('recharge-company').value)">Add to Cart</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Cart -->
+    <div class="cart-display" id="cart-display">
+        <h4>Cart</h4>
+        <div id="cart-items"></div>
+        <h5>Total: ₹<span id="cart-total">0</span></h5>
+        <div class="cart-qr">
+            <h5>Scan to Pay</h5>
+            <img src="/mnt/data/WhatsApp Image 2024-12-20 at 21.46.24_83547365.jpg" alt="QR Code for Payment">
+        </div>
+        <h5 id="caution-message"></h5>
+        <button class="checkout-button" onclick="checkout()">Checkout</button>
+    </div>
+
+    <!-- Popup -->
+    <div class="popup" id="popup">CDH INTERNET POINT BY RISHAB DAS</div>
+
+    <!-- Scrolling Text at the Bottom -->
+    <div class="scrolling-bottom-text">
+        <span>Opening new branch at Bongaon and Madanpur soon.</span>
+    </div>
+
+    <script>
+        let cart = [];
+        let totalAmount = 0;
+
+        function addToCart(productName, amount, company = '') {
+            if (amount < 10 || amount > 5000) {
+                alert("Transaction amount must be between ₹10 and ₹5000.");
+                return;
+            }
+            cart.push({ product: productName, amount: amount, company: company });
+            totalAmount += amount + 40;  // Add ₹40 extra charge
+            updateCart();
+        }
+
+        function updateCart() {
+            const cartItemsList = document.getElementById('cart-items');
+            const cartTotal = document.getElementById('cart-total');
+            const cautionMessage = document.getElementById('caution-message');
+
+            cartItemsList.innerHTML = ''; // Clear existing items
+            cart.forEach(item => {
+                const div = document.createElement('div');
+                const companyText = item.company ? ` (${item.company.toUpperCase()})` : '';
+                div.textContent = `${item.product}${companyText}: ₹${item.amount.toFixed(2)}`;
+                cartItemsList.appendChild(div);
+            });
+
+            cartTotal.textContent = totalAmount.toFixed(2);
+            cautionMessage.textContent = `Caution: If you send money online, take a screenshot and send it to our WhatsApp number. If not, send the bill of the selected items along with your name, class, section, and roll number to the same number.`;
+            document.getElementById('cart-display').style.display = 'block'; // Show cart
+        }
+
+        function checkout() {
+            const phoneNumber = "9022626612";
+            const message = `I have purchased products worth ₹${totalAmount.toFixed(2)}. Please confirm my order.`;
+            window.location.href = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+        }
+
+        // Popup display logic
+        function showPopup() {
+            const popup = document.getElementById('popup');
+            popup.style.display = 'block';
+            setTimeout(() => {
+                popup.style.display = 'none';
+            }, 3000); // Show for 3 seconds
+        }
+
+        // Display popup every 5 seconds
+        setInterval(showPopup, 5000);
+    </script>
+</body>
+</html>

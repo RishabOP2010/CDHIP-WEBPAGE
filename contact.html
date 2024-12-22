@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CDH INTERNET POINT CONTACT US</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+        }
+        header {
+            background-color: #333;
+            color: white;
+            padding: 1rem 0;
+            text-align: center;
+        }
+        .container {
+            padding: 2rem;
+            max-width: 900px;
+            margin: auto;
+        }
+        .contact-form input, .contact-form textarea, .contact-form select {
+            width: 100%;
+            padding: 0.75rem;
+            margin: 0.5rem 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .contact-form button {
+            padding: 1rem 2rem;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .contact-form button:hover {
+            background-color: #0056b3;
+        }
+        .location-info, .our-staff, .area-check, .feedback-section {
+            background-color: #f8f9fa;
+            padding: 1rem;
+            margin-top: 2rem;
+            border-radius: 5px;
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+        .our-staff, .area-check {
+            margin-top: 1rem;
+        }
+        .return-btn {
+            display: inline-block;
+            padding: 1rem;
+            background-color: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+        .our-staff h3 {
+            color: #007bff;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>CDH INTERNET POINT</h1>
+        <p>This page is for general feedback and complaint purposes.</p>
+    </header>
+
+    <div class="container">
+        <!-- Return Back -->
+        <a href="file:///C:/Users/risha/OneDrive/Desktop/CDH%20OFFS%20WEBPAGE/index.html" class="return-btn">Return Back</a>
+
+        <!-- Contact Form -->
+        <div class="contact-form">
+            <h2>Contact Us</h2>
+            <p>If you have any questions or need assistance, please feel free to reach out. We're here to help!</p>
+
+            <form action="submit_contact_form.php" method="POST" enctype="multipart/form-data">
+                <label for="first-name">First Name:</label>
+                <input type="text" id="first-name" name="first_name" required>
+
+                <label for="middle-name">Middle Name (if applicable):</label>
+                <input type="text" id="middle-name" name="middle_name">
+
+                <label for="last-name">Last Name:</label>
+                <input type="text" id="last-name" name="last_name" required>
+
+                <label for="school-name">School Name:</label>
+                <select id="school-name" name="school_name" required>
+                    <option value="satish-chandra-memorial-school">Satish Chandra Memorial School</option>
+                    <option value="ramlal-academy">Ramlal Academy</option>
+                    <option value="bapuji-high-secondary-school-boys">Bapuji High Secondary School (Boys)</option>
+                    <option value="bapuji-high-secondary-school-girls">Bapuji High Secondary School (Girls)</option>
+                    <option value="brodway-accent-high-school">Brodway Accent High School</option>
+                    <option value="bandhan-school">Bandhan School</option>
+                    <option value="kidzee">KidzEE</option>
+                    <option value="london-kids">London Kids</option>
+                    <option value="simurali-public-school">Simurali Public School</option>
+                    <option value="bongaon-high-school">Bongaon High School</option>
+                    <option value="indikids">Indikids</option>
+                    <option value="narayana-ranaghat">Narayana Ranaghat</option>
+                    <option value="vivekananda-high-school-chakdah">Vivekananda High School Chakdah</option>
+                    <option value="purbachal-boys-girls-school">Purbachal Boys/Girls School</option>
+                    <option value="happy-home">Happy Home</option>
+                </select>
+
+                <label for="class">Class:</label>
+                <select id="class" name="class" required>
+                    <option value="3">Class 3</option>
+                    <option value="4">Class 4</option>
+                    <option value="5">Class 5</option>
+                    <option value="6">Class 6</option>
+                    <option value="7">Class 7</option>
+                    <option value="8">Class 8</option>
+                    <option value="9">Class 9</option>
+                    <option value="10">Class 10</option>
+                    <option value="11">Class 11</option>
+                    <option value="12">Class 12</option>
+                </select>
+
+                <label for="section">Section:</label>
+                <select id="section" name="section" required>
+                    <option value="a">A</option>
+                    <option value="b">B</option>
+                    <option value="c">C</option>
+                    <option value="d">D</option>
+                    <option value="e">E</option>
+                    <option value="f">F</option>
+                    <option value="g">G</option>
+                    <option value="h">H</option>
+                    <option value="i">I</option>
+                    <option value="j">J</option>
+                    <option value="k">K</option>
+                    <option value="l">L</option>
+                </select>
+
+                <label for="email">Email ID:</label>
+                <input type="email" id="email" name="email" required>
+
+                <label for="message">Feedback/Problem:</label>
+                <textarea id="message" name="message" rows="4" required></textarea>
+
+                <label for="photo">Attach Photo (if any):</label>
+                <input type="file" id="photo" name="photo">
+
+                <button type="submit">Send Message</button>
+            </form>
+        </div>
+
+        <!-- Our Staff -->
+        <div class="our-staff">
+            <h3>Our Staffs</h3>
+            <p>Owner / CDH Branch Manager: <strong>Rishab Das</strong></p>
+            <p>Staff: <strong>Ankush Mukherjee</strong></p>
+            <p>Simurali Branch Manager: <strong>Ankush Mukherjee</strong></p>
+        </div>
+
+        <!-- Area Check -->
+        <div class="area-check">
+            <h3>Check Your Area Availability</h3>
+            <label for="zip-code">Enter Your PIN/ZIP Code:</label>
+            <input type="text" id="zip-code" name="zip_code" required>
+            <button onclick="checkAvailability()">Check Availability</button>
+            <p id="availability-status"></p>
+        </div>
+
+       
+
+    <script>
+        function checkAvailability() {
+            const zipCode = document.getElementById('zip-code').value;
+            const availableZipCodes = ['741222', '741248', '741223', '743235', '743262'];
+            const availabilityStatus = document.getElementById('availability-status');
+
+            if (availableZipCodes.includes(zipCode)) {
+                availabilityStatus.textContent = 'Available in your area!';
+            } else {
+                availabilityStatus.textContent = 'Coming to your place soon!';
+            }
+        }
+    </script>
+</body>
+</html>

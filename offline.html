@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CDH OFFLINE STORE</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #000;
+            color: #fff;
+            overflow-x: hidden;
+        }
+        header {
+            text-align: center;
+            padding: 1rem 0;
+            background-color: #111;
+            position: relative;
+        }
+        header .scrolling-text {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            white-space: nowrap;
+            overflow: hidden;
+        }
+        header .scrolling-text span {
+            display: inline-block;
+            padding-left: 100%;
+            animation: scrollText 10s linear infinite;
+        }
+        @keyframes scrollText {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-100%); }
+        }
+        nav {
+            text-align: center;
+            padding: 0.5rem 0;
+            background-color: #222;
+        }
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            margin: 0 1rem;
+            font-size: 1.1rem;
+        }
+        .container {
+            padding: 2rem;
+            max-width: 1200px;
+            margin: auto;
+        }
+        .product {
+            background-color: #111;
+            margin-bottom: 1.5rem;
+            padding: 1rem;
+            border-radius: 5px;
+            text-align: center;
+        }
+        .product-title {
+            font-size: 1.25rem;
+            font-weight: bold;
+        }
+        .product-coming-soon {
+            font-size: 1rem;
+            font-style: italic;
+            color: #f0ad4e;
+            margin-top: 1rem;
+        }
+        .cart-display {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #222;
+            color: #fff;
+            padding: 1rem;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+            width: 300px;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+        .cart-display h4 {
+            margin-top: 0;
+        }
+        .cart-qr img {
+            max-width: 100%;
+            margin-top: 1rem;
+        }
+        .checkout-button {
+            background-color: #007bff;
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+        }
+        .popup {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            background-color: #007bff;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-weight: bold;
+            display: none;
+            z-index: 1000;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>CDH OFFLINE STORE</h1>
+        <p>ORDER YOUR PRODUCT FROM HERE TO RECEIVE ITEM IN OFFLINE AT BOTH CHAKDAH AND SIMURALI</p>
+        <div class="scrolling-text">
+            <span>EXPECTED ORDER DELIVERY AT WEDNESDAY AND FRIDAY OF WORKING DAYS</span>
+        </div>
+    </header>
+    <nav>
+        <a href="file:///C:/Users/risha/OneDrive/Desktop/CDH%20OFFS%20WEBPAGE/index.html">Online Shopping</a>
+        <a href="file:///C:/Users/risha/OneDrive/Desktop/CDH%20OFFS%20WEBPAGE/contact.html">Contact Us</a>
+        <a href="file:///C:/Users/risha/OneDrive/Desktop/CDH%20OFFS%20WEBPAGE/offline.html">Offline Shopping Book</a>
+    </nav>
+    <div class="container">
+        <!-- Finger Sleeves -->
+        <div class="product">
+            <div class="product-title">Finger Sleeves</div>
+            <div class="product-actions">
+                <select id="finger-sleeves-quantity">
+                    <option value="40">2 Sleeves - ₹40</option>
+                    <option value="50">4 Sleeves - ₹50</option>
+                    <option value="60">6 Sleeves - ₹60</option>
+                </select>
+                <button onclick="addToCart('Finger Sleeves', parseFloat(document.getElementById('finger-sleeves-quantity').value))">Add to Cart</button>
+            </div>
+        </div>
+
+        <!-- PC Building Section -->
+        <div class="product">
+            <div class="product-title">PC Building</div>
+            <div class="product-coming-soon">Coming Soon</div>
+        </div>
+
+        <!-- Gaming Triggers Section -->
+        <div class="product">
+            <div class="product-title">Gaming Triggers</div>
+            <div class="product-coming-soon">Coming Soon</div>
+        </div>
+    </div>
+    <div class="cart-display" id="cart-display">
+        <h4>Your Cart</h4>
+        <ul id="cart-list"></ul>
+        <button class="checkout-button" onclick="checkout()">Checkout</button>
+    </div>
+    <div class="popup" id="popup">
+        CDH INTERNET POINT BY RISHAB DAS
+    </div>
+    <script>
+        let cart = [];
+        function addToCart(item, price) {
+            cart.push({ item, price });
+            updateCartDisplay();
+        }
+        function updateCartDisplay() {
+            const cartList = document.getElementById("cart-list");
+            cartList.innerHTML = "";
+            cart.forEach(({ item, price }) => {
+                const li = document.createElement("li");
+                li.textContent = `${item} - ₹${price}`;
+                cartList.appendChild(li);
+            });
+        }
+        function checkout() {
+            const phoneNumber = "9022626612";
+            const message = `I have purchased products worth ₹${cart.reduce((total, item) => total + item.price, 0)}. Please confirm my order.`;
+            window.location.href = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+        }
+        function showPopup() {
+            const popup = document.getElementById("popup");
+            popup.style.display = "block";
+            setTimeout(() => {
+                popup.style.display = "none";
+            }, 3000);
+        }
+        setInterval(showPopup, 5000);
+    </script>
+</body>
+</html>
